@@ -1,6 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 
 Button.propTypes = {
     type : propTypes.oneOf(['button', 'link']),
@@ -18,31 +19,33 @@ export default function Button(props) {
     if (props.secondary) className.push("text-textSecondary")
     if (props.active) className.push("text-secondary")
     
+    const navigate = useNavigate()
+        
+
     const onClick = () => {
         if (props.onClick) props.onClick()
     }
 
     if (props.type === 'link'){
         if (props.isExternal){
-            return (
-                <a href= {props.link} className={className.join(' ')} target={props.target === "_blank" ? "noopener noreferer" : undefined }>
-                    {props.children}
+            return(
+                <a href={props.href} className={className.join(' ')}  target={props.target === "_blank" ? "noopener noreferer" : undefined }>
+                    {props.children}    
                 </a>
             )
         }
-    }
         else {
             return (
-                <Link to={props.link} className={className.join(' ')}>
-                    {props.children}
-                </Link>
+                <button onClick={()=> navigate(props.to)} className={className.join(' ')}>{props.children}</button>
             )
-            
         }
+    }
         
-    return (
-        <button className={className.join(" ")} onClick= {onClick}>
-            {props.children}
-        </button>
+    if (props.type === 'button'){
+        return (
+            <button className={className.join(" ")} onClick= {onClick}>
+                {props.children}
+            </button>
     )
+    }
 }
