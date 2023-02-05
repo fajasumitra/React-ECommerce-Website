@@ -13,11 +13,14 @@ Button.propTypes = {
 
 export default function Button(props) {
     const className = [props.className]
+    if (props.borderedEmpty) className.push("border border-isGray border-2 px-3 py-1 w-auto")
     if (props.tertiary) className.push("text-textTertiary")
-    if (props.bordered) className.push("border border-isGray border-2 px-3 py-1")
     if (props.primary) className.push("text-textMain")
     if (props.secondary) className.push("text-textSecondary")
     if (props.active) className.push("text-secondary")
+    if (props.white) className.push('text-white')
+    if (props.Bright) className.push('px-3 py-[1px] bg-secondary')
+    if (props.radius) className.push ('')
     
     const navigate = useNavigate()
         

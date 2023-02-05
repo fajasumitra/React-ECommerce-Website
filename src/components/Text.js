@@ -8,19 +8,22 @@ export default function Text({
     active,
     center,
     children,
-    heading,
-    ...rest
+    red,
+    left,
+    heading
 }){   
     const classes = classNames(' ', {
         "text-textMain" : primary,
+        "text-primary" : red,
         "text-textSecondary" : secondary,
         "text-textTertiary" : tertiary,
         "text-secondary" : active,
         "text-center" : center,
-        "text-3xl font-semibold" : heading,        
+        "text-3xl font-semibold" : heading,
+        "text-left" : left
     })  
     
     return (
-        <p {...rest} className={classes}>{children}</p>
+        <p className={classes}>{children}</p>
     )
 }

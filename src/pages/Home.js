@@ -1,13 +1,14 @@
 import React from 'react'
 import Button from '../components/Button'
-import Card from '../components/Card'
 import JumbotronSlider from '../components/JumbotronSlider'
 import Text from '../components/Text'
 import AsideLeft from '../parts/AsideLeft'
 import AsideRight from '../parts/AsideRight'
+import CardContent from '../parts/CardContent'
 import FeaturedProduct from '../parts/FeaturedProduct'
 import Footer from '../parts/Footer'
 import Navbar from '../parts/Navbar'
+import PurchaseOnline from '../parts/PurchaseOnline'
 
 export default function Home() {
   return (
@@ -15,14 +16,14 @@ export default function Home() {
         <AsideLeft />
         <AsideRight />
         <Navbar />
+        {/* banner grid template */}
         <div className='grid grid-cols-12 mb-10 mt-[70px] mx-[70px]'>
-            {/* layer 1 */}
+            {/* banner column 1*/}
             <div className='grid-rows-1 col-span-4'>
-                {/* layer 2 */}
-                <div className='w-auto h-auto pt-3 pr-3 grid justify-items-end'>
-                    {/* layer 3 */}
-                    <Card type='view' size3x4 gray className="mb-6" src='dummy.png' alt='displayed product'/>
-                    <Card type='view' size3x4 gray src='dummy.png' alt='displayed product'/>
+                {/* banner rows 1 */}
+                <div className='w-auto h-auto pt-3 pr-3 grid justify-items-end gap-6'>
+                    <CardContent type='view' />
+                    <CardContent type='view' />
                 </div>
             </div>
             <div className='w-auto h-auto col-span-8 pt-3 pl-3 pr-16'>
@@ -33,7 +34,7 @@ export default function Home() {
         </div>
 
         <Text center primary heading>Featured Product</Text>
-        <div className='mx-[250px] my-12 h-[270px] bg-gray-200'>
+        <div className='mx-[250px] my-12 h-[270px] '>
             <FeaturedProduct />
         </div>
         
@@ -47,8 +48,8 @@ export default function Home() {
             <Text>/</Text>
             <Button type={'link'} to='#'>discount</Button>
         </div>
-        <div className='mx-[300px] my-12 w-auto h-[800px] bg-gray-200'>
-
+        <div className='mx-[315px] my-12 w-auto h-[800px] '>
+            <PurchaseOnline />
         </div>
 
         <Footer />
