@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../components/Button'
 import JumbotronSlider from '../components/JumbotronSlider'
 import Text from '../components/Text'
@@ -11,6 +11,17 @@ import Navbar from '../parts/Navbar'
 import PurchaseOnline from '../parts/PurchaseOnline'
 
 export default function Home() {
+    const [addPurchaseOnline, setPurchaseOnline] = useState('newArrival')
+
+    const PurchaseOnlineHandler = (tab)=>{
+        if (tab === 'newArrival') setPurchaseOnline('newArrival')
+        if (tab === 'bestSeller') setPurchaseOnline('bestSeller')
+        if (tab === 'mostView') setPurchaseOnline('mostView')
+        if (tab === 'discount') setPurchaseOnline('discount')
+    }
+
+
+        
   return (
     <>
         <AsideLeft />
@@ -40,16 +51,19 @@ export default function Home() {
         
         <Text center primary heading>Purchase Online</Text>
         <div className='flex place-content-center justify-between w-[450px] m-auto mt-8'>
-            <Button type={'link'} to='#' active>New Arrival</Button>
+            <Button type={'button'} to='#' active={addPurchaseOnline === 'newArrival'} onClick={()=> PurchaseOnlineHandler('newArrival')}>New Arrival</Button>
             <Text>/</Text>
-            <Button type={'link'} to='#'>Best Seller</Button>
+            <Button type={'button'} to='#' active={addPurchaseOnline === 'bestSeller'} onClick={()=> PurchaseOnlineHandler('bestSeller')}>Best Seller</Button>
             <Text>/</Text>
-            <Button type={'link'} to='#'>Most View</Button>
+            <Button type={'button'} to='#' active={addPurchaseOnline === 'mostView'} onClick={()=> PurchaseOnlineHandler('mostView')}>Most View</Button>
             <Text>/</Text>
-            <Button type={'link'} to='#'>discount</Button>
+            <Button type={'button'} to='#' active={addPurchaseOnline === 'discount'} onClick={()=> PurchaseOnlineHandler('discount')}>discount</Button>
         </div>
         <div className='mx-[315px] my-12 w-auto h-[800px] '>
-            <PurchaseOnline />
+            {addPurchaseOnline === 'newArrival' && <PurchaseOnline type='newArrival'/>}
+            {addPurchaseOnline === 'bestSeller' && <PurchaseOnline type='bestseller'/>}
+            {addPurchaseOnline === 'mostView' && <PurchaseOnline type='mostView'/>}
+            {addPurchaseOnline === 'discount' && <PurchaseOnline type='discount'/>}
         </div>
 
         <Footer />
